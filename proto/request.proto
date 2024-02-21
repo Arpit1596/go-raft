@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "./proto";
+
+service CommandService {
+    rpc AddNode(Command) returns (CommandResponse);
+}
+
+service LeaderService {
+    rpc GetLeader(google.protobuf.Empty) returns (Leader);
+}
+
+message Command {
+    string command = 1;
+    string serverId = 2;
+    string serverAddress = 3;
+    int64 prevIndex = 4;
+}
+
+message CommandResponse {
+    string result = 1;
+}
+
+message Leader{
+    string leaderName = 1;
+}
